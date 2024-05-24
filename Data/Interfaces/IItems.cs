@@ -9,5 +9,7 @@ namespace pr37savichev.Data.Interfaces
     public interface IItems
     {
         public IEnumerable<Items> AllItems { get; }
+
+        public int Add(Items item);
     }
 }

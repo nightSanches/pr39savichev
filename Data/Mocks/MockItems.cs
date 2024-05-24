@@ -1,4 +1,5 @@
-﻿using pr37savichev.Data.Interfaces;
+﻿using pr37savichev.Data.DataBase;
+using pr37savichev.Data.Interfaces;
 using pr37savichev.Data.Models;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace pr37savichev.Data.Mocks
 {
-    public class MockItems : IItems
+    public class MockItems : DBItems
     {
         public ICategories _category = new MockCategories();
 
@@ -29,7 +30,7 @@ namespace pr37savichev.Data.Mocks
                     new Items()
                     {
                         Id = 1,
-                        Name = "MP-153",
+                        Name = "Super Multiwarka",
                         Description = "Описание2 описание2 уэээээээээээээээээ бла-бла-бла-бла-бла-бла-бла-бла",
                         Img = "https://c.dns-shop.ru/thumb/st1/fit/500/500/59a87f71c12f41fa3c6ad251a93b7811/b1a761fddbd2197e22bdcf5ee0cd1cfd773ce824ab6ef6eba7411b9a626c50a7.jpg.webp",
                         Price = 17555,

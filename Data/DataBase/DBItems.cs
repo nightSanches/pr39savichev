@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using pr37savichev.Data.Common;
 using pr37savichev.Data.Interfaces;
 using pr37savichev.Data.Models;
 using System.Collections.Generic;
@@ -33,6 +34,29 @@ namespace pr37savichev.Data.DataBase
 
                 return items;
             }
+        }
+
+        public int Add (Items item)
+        {
+            MySqlConnection mySqlConnection = Connection.MySqlOpen();
+            Connection.MySqlQuery(
+                $"INSERT INTO `items`(`Name`,`Description`,`Img`,`Price`,`IdCategory`) VALUES ('{item.Name}','{item.Description}','{item.Img}',{item.Price}, {item.Category.Id});", mySqlConnection);
+            mySqlConnection.Close();
+
+            int IdItem = -1;
+            
+            mySqlConnection = Connection.MySqlOpen();
+            MySqlDataReader mySqlDataReaderItem = Connection.MySqlQuery(
+                $"SELECT `Id` FROM `items` WHERE `Name` = '{item.Name}' AND `Description` = '{item.Description}' AND `Price` = {item.Price} AND `IdCategory` = {item.Category.Id};",
+                mySqlConnection);
+
+            if (mySqlDataReaderItem.HasRows)
+            {
+                mySqlDataReaderItem.Read();
+                IdItem = mySqlDataReaderItem.GetInt32(0);
+            }
+            mySqlConnection.Close();
+            return IdItem;
         }
     }
 }

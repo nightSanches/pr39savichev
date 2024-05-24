@@ -8,13 +8,13 @@
 
 <div>
     <select onchange="SelectCategory(this)">
-        <option value="0">Выбрать ...</option>
+        <option value="0">Выбрать...</option>
         @{
-            foreach (var Category in Model.Categories)
+            foreach(var Category in Model.Categories)
             {
-                if (Category.Id == Model.SelectCategory)
+                if(Category.Id == Model.SelectCategory)
                 {
-                    <option selected="selected" value="@Category.Id"> @Category.Name</option>
+                    <option selected="selected" value="@Category.Id">@Category.Name</option>
                 }
                 else
                 {
@@ -25,7 +25,7 @@
     </select>
     <script>
         function SelectCategory(sender) {
-            window.location = "/Items/List?id=" sender.value;
+            window.location = "/Items/List?id=" + sender.value;
         }
     </script>
 </div>
