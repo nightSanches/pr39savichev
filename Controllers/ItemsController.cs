@@ -28,6 +28,10 @@ namespace pr37savichev.Controllers
             return View(VMItems);
         }
 
-        
+        public ViewResult Add()
+        {
+            IEnumerable<Categories> Categories = IAllCategories.AllCategories;
+            return View(Categories);
+        }
     }
 }
